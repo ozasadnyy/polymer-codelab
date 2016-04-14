@@ -1,0 +1,14 @@
+{
+  "name": "polymer-codelab-demo",
+  "version": "1.0.0",
+  "description": "Polymer codelab or build your first element",
+  "author": "Oleh Zasadnyy",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.12.*",
+    "gulp": "^3.9.1"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}
