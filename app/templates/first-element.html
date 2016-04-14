@@ -29,9 +29,9 @@
 
 <pre class="indented">
     <code>&lt;link rel="import"
-          href="../bower_components/polymer/polymer.html"&gt;
-    &lt;link rel="import"
-          href="../bower_components/iron-icon/iron-icon.html"&gt;</code>
+      href="../bower_components/polymer/polymer.html"&gt;
+      &lt;link rel="import"
+      href="../bower_components/iron-icon/iron-icon.html"&gt;</code>
 </pre>
 
 <aside class="special">
@@ -43,18 +43,18 @@
 <pre class="indented">
     <code>&lt;dom-module id="icon-toggle"&gt;
       &lt;template&gt;
-        &lt;style&gt;
-          /* Element's styles */
-          :host {}
-        &lt;/style&gt;
+      &lt;style&gt;
+      /* Element's styles */
+      :host {}
+      &lt;/style&gt;
 
-        <!-- Element's body -->
+      &lt;!-- Element's body --&gt;
       &lt;/template&gt;
 
       &lt;script&gt;
-        // Elements scripts
+      // Elements scripts
       &lt;/script&gt;
-    &lt;/dom-module&gt;</code>
+      &lt;/dom-module&gt;</code>
 </pre>
 
 <h3>Key information:</h3>
@@ -89,5 +89,16 @@
       /* this is the element's prototype */
       is: 'icon-toggle'
     });
-  &lt;/script&gt;</code>
+    &lt;/script&gt;</code>
 </pre>
+
+<h3>Key information:</h3>
+
+<ul>
+  <li>The <code>Polymer</code>&nbsp;call <em>registers</em>&nbsp;the element so it's recognized by the browser. &nbsp;
+  </li>
+  <li>The argument to the Polymer call is the new element's prototype. You'll do more with this in a later step.</li>
+  <li>The <code>is</code>&nbsp;property on the prototype is the new element's name. It has to <em>match</em>&nbsp;the
+    <code>id</code>&nbsp;on the <code>&lt;dom-module&gt;</code>&nbsp;that contains the element's template.
+  </li>
+</ul>

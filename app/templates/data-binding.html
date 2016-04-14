@@ -1,0 +1,148 @@
+<p>Right now, the element doesn't do much. In this step, you'll give it a basic API, allowing you to configure the icon
+  from markup, using an attribute, or from JavaScript, using a property.</p>
+
+<p>First, a bit of data binding. Find the <code>&lt;iron-icon&gt;</code>&nbsp;element and change the value of the <code>icon</code>&nbsp;attribute
+  from <code>"polymer"</code>&nbsp;to &nbsp;"<code>&#91;<span>&#91;toggleIcon&#93;</span>&#93;</code>&nbsp;".</p>
+
+<h3>icon-toggle.html</h3>
+
+<pre>
+  <code>&lt;!-- local DOM goes here --&gt;
+    &lt;iron-icon icon="&#91;<code>&#91;toggleIcon&#93;</code>&#93;"&gt;&lt;/iron-icon&gt;
+  </code>
+</pre>
+
+<h3>Key information:</h3>
+<ul>
+  <li>
+    <code>toggleIcon</code>&nbsp;is a <em>property</em>&nbsp;you'll define on the toggle button element. It doesn't have
+    a default value yet.
+  </li>
+  <li>The <code>icon="</code><code>[[toggleIcon]]</code><code>"</code> assignment is a <em>data binding</em>. It links
+    your element's <code>toggleIcon</code>&nbsp;<em>property</em>&nbsp;with the <code>&lt;iron-icon&gt;</code>'s <code>icon</code>&nbsp;property.
+  </li>
+</ul>
+
+<p>You could now use your element and set the <code>toggleIcon</code>&nbsp;property in markup or using JavaScript, as
+  shown in the following examples. <em>(You don't need to add this code to your project.)</em></p>
+
+<h3>Example—setting the icon using markup</h3>
+
+<pre>
+  <code>
+    &lt;icon-toggle toggle-icon="favorite"&gt;&lt;/icon-toggle&gt;
+  </code>
+</pre>
+
+<h3>Example—setting the icon from JavaScript</h3>
+<pre>
+  <code>
+    var myToggle = document.querySelector('icon-toggle');
+    myToggle.toggleIcon = "favorite";
+  </code>
+</pre>
+
+<aside class="special">
+  <p><strong>Learn more: attribute and property names</strong><br><br>You'll note that the markup
+    example uses <code>toggle-icon</code>, not <code>toggleIcon.</code>&nbsp;Polymer represents <code>camelCase</code>&nbsp;property
+    names using <code>dash-case</code>&nbsp;attribute names. To learn more, see <a target="_blank"
+                                                                                   href="https://www.polymer-project.org/1.0/docs/devguide/properties.html#property-name-mapping">Property
+      name to attribute name mapping</a>&nbsp;in the Polymer library docs.</p>
+</aside>
+
+<p>Next, add a declaration for the <code>toggleIcon</code>&nbsp;property.</p>
+
+<p>Find the script tag and add the following <code>properties</code>&nbsp;object to the element's prototype:</p>
+
+<h3>icon-toggle.html</h3>
+<pre>
+  <code>Polymer({
+    /* this is the element's prototype */
+      is: 'icon-toggle',
+      properties: {
+        toggleIcon: String
+      }
+    });
+  </code>
+</pre>
+
+<h3>Key information:</h3>
+<ul>
+  <li>Declaring a property in the <code>properties</code>&nbsp;object is a good idea if the property is going to be part
+    of your element's public API.
+  </li>
+  <li>A simple property declaration like this one just includes the type (in this case, <code>String</code>).</li>
+</ul>
+
+<aside class="special"><p><strong>Learn more: deserializing attributes</strong></p>
+  <p>The declared property type affects how Polymer converts, or <em>deserializes</em>&nbsp;the attribute value (always
+    a string value) into a JavaScript property value. The default is <code>String</code>, so the declaration of <code>toggleIcon</code>&nbsp;is
+    a formality here. To learn more, see <a target="_blank"
+                                            href="https://www.polymer-project.org/1.0/docs/devguide/properties.html#attribute-deserialization">Attribute
+      deserialization</a>&nbsp;in the Polymer docs.</p></aside>
+
+<p>The <code>properties</code>&nbsp;object also supports several more features. Add the following lines to add support
+  for the <code>pressed</code>&nbsp;property: </p>
+
+<h3>icon-toggle.html</h3>
+
+<pre>
+  <code>Polymer({
+    /* this is the element's prototype */
+    is: 'icon-toggle',
+    properties: {
+      toggleIcon: String,
+      pressed: {
+        type: Boolean,
+        value: false,
+        notify: true,
+        reflectToAttribute: true
+      }
+    }
+    });
+  </code>
+</pre>
+
+<h3>Key information:</h3>
+<ul>
+  <li>For this more complicated property, you supply a configuration object with several fields.</li>
+  <li>The <code>value</code>&nbsp;specifies the property's <a target="_blank"
+                                                              href="https://www.polymer-project.org/1.0/docs/devguide/properties.html#configure-values">default
+    value</a>.
+  </li>
+  <li>The <code>notify</code>&nbsp;property tells Polymer to <em>generate property change events</em> when the property
+    value changes. This lets the change be observed by other nodes.
+  </li>
+  <li>The <code>reflectToAttribute</code>&nbsp;property tells Polymer to <a target="_blank"
+                                                                            href="https://www.polymer-project.org/1.0/docs/devguide/properties.html#attribute-reflection">update
+    the corresponding attribute when the property changes</a>. This lets you style the element using an attribute
+    selector, like <code>icon-toggle[pressed]</code>.
+  </li>
+</ul>
+
+<aside class="special"><p><strong>Learn more: notify and reflectToAttribute</strong></p>
+  <p><strong><br></strong>The <code>notify</code>&nbsp;and <code>reflectToAttribute</code>&nbsp;properties may sound
+    similar: they both make the element's state visible to the outside world. <code>reflectToAttribute</code>&nbsp;makes
+    the state visible <em>in the DOM tree</em>, so that it's visible to CSS and the <code>querySelector</code>&nbsp;methods.
+    <code>notify</code>&nbsp;<em>makes state changes observable outside the element</em>, either using JavaScript event
+    handlers or Polymer <a target="_blank"
+                           href="https://www.polymer-project.org/1.0/docs/devguide/data-binding.html#property-notification">two-way
+      data binding</a>.</p></aside>
+
+<p>Now your element has <code>pressed</code>&nbsp;and <code>toggleIcon</code>&nbsp;properties working.</p>
+
+<p>Reload the demo,&nbsp;and you should see star and heart icons instead of the hard-coded icon from the previous
+  step:</p>
+
+<h1>Image here</h1>
+
+<p>If you're curious about where the stars and hearts come from, you can take a peek at &nbsp;<code>demo/icon-toggle-demo.html</code>&nbsp;and
+  see lines like this:</p>
+
+
+<pre>
+  <code>
+    &lt;icon-toggle toggle-icon="star"&gt;&lt;/icon-toggle&gt;
+    &lt;icon-toggle toggle-icon="star" pressed&gt;&lt;/icon-toggle&gt;
+  </code>
+</pre>
