@@ -1,0 +1,34 @@
+[{
+	"breed": "Abyssinian",
+	"image": "abyssinian.jpg"
+}, {
+	"breed": "Aegean",
+	"image": "aegean.jpg"
+}, {
+	"breed": "American Shorthair",
+	"image": "american_shorthair.jpg",
+	"dangerous": true
+}, {
+	"breed": "Australian Mist",
+	"image": "australian_mist.jpg"
+}, {
+	"breed": "Asian Semi-longhair",
+	"image": "asian_semi_longhair.jpg"
+}, {
+	"breed": "Birman",
+	"image": "birman.jpg"
+}, {
+	"breed": "British Shorthair",
+	"image": "british_shorthair.jpg",
+  "dangerous": true
+}, {
+	"breed": "British Longhair",
+	"image": "british_longhair.jpg"
+}, {
+	"breed": "Burmilla",
+	"image": "burmilla.jpeg",
+	"dangerous": true
+}, {
+	"breed": "Chartreux",
+	"image": "chartreux.jpg"
+}]

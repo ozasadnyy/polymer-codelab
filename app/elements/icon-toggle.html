@@ -11,16 +11,16 @@
       }
       iron-icon {
         fill: transparent;
-        stroke: #E91E63;
+        stroke: var(--toggle-icon-fill, #E91E63);
+        cursor: pointer;
       }
-      iron-icon[pressed] {
-        fill: #E91E63;
+      :host([pressed]) iron-icon {
+        fill: var(--toggle-icon-fill, #E91E63);
       }
     </style>
 
     <!-- Element's body -->
     <iron-icon icon="[[toggleIcon]]"></iron-icon>
-    <iron-icon icon="[[toggleIcon]]" pressed></iron-icon>
   </template>
 
   <script>
@@ -36,6 +36,12 @@
           reflectToAttribute: true,
           value: false
         }
+      },
+      listeners: {
+        'tap': 'toggle'
+      },
+      toggle: function () {
+        this.pressed = !this.pressed;
       }
     });
   </script>
