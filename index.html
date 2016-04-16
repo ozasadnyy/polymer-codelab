@@ -1,1 +1,187 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="description" content=""><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Polymer Starter Kit"><title>Polymer Codelab</title><meta name="theme-color" content="#2E3AA1"><link rel="manifest" href="manifest.json"><meta name="msapplication-TileColor" content="#3372DF"><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="Polymer Codelab"><link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Polymer Codelab"><link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png"><meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png"><link rel="stylesheet" href="styles/main.css"><script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script><link rel="import" href="elements/elements.html"></head><body unresolved=""><span id="browser-sync-binding"></span><template is="dom-bind" id="app"><google-codelab title="Polymer codelab" feedback-link="https://github.com/googlecodelabs" environment="web"><google-codelab-step label="Overview" duration="2">{% include "overview.html" %}</google-codelab-step><google-codelab-step label="Getting set up" duration="8">{% include "set-up.html" %}</google-codelab-step><google-codelab-step label="First element" duration="12">{% include "first-element.html" %}</google-codelab-step><google-codelab-step label="Local DOM" duration="8">{% include "local-dom.html" %}</google-codelab-step><google-codelab-step label="Use data binding and properties" duration="28">{% include "data-binding.html" %}</google-codelab-step><google-codelab-step label="React to input" duration="10">{% include "react-to-input.html" %}</google-codelab-step><google-codelab-step label="Theming: custom CSS properties" duration="8">{% include "theming.html" %}</google-codelab-step></google-codelab><paper-toast id="toast"><span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Ok</span></paper-toast></template><script src="scripts/app.js"></script></body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="description" content=""><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Polymer Starter Kit"><title>Polymer Codelab</title><meta name="theme-color" content="#2E3AA1"><link rel="manifest" href="manifest.json"><meta name="msapplication-TileColor" content="#3372DF"><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="Polymer Codelab"><link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Polymer Codelab"><link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png"><meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png"><link rel="stylesheet" href="styles/main.css"><script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script><link rel="import" href="elements/elements.html"></head><body unresolved=""><span id="browser-sync-binding"></span><template is="dom-bind" id="app"><google-codelab title="Polymer codelab" feedback-link="https://github.com/googlecodelabs" environment="web"><google-codelab-step label="Overview" duration="2"><h3>What you'll learn</h3><ul class="checklist"><li>How to to build elements using Polymer 1.0.</li><li>How to use elements in Polymer's iron, paper, and Google Web Component sets.</li><li>How to use Polymer's data binding features to reduce boilerplate code.</li><li>How to make your application working offline.</li></ul><h3>Preview</h3><img src="../images/image-0.png" style="max-width: 150px"><h3>What you'll need</h3><ul><li>Basic understanding of HTML, CSS, and web development.</li><li>Install <a href="https://www.jetbrains.com/webstorm/" target="_blank">Webstorm</a> or use your own editor of choice.</li></ul></google-codelab-step><google-codelab-step label="Getting set up" duration="8"><p>While you’re free to use your own editor, this codelab will probably be easier to follow if you use the WebStorm IDE. If you don't have it installed yet, you can download from official website.</p><a href="https://www.jetbrains.com/webstorm/download/#section=windows-version" target="_blank"><paper-button raised="" class="colored"><iron-icon icon="file-download"></iron-icon>Download WebStorm</paper-button></a><p>After installing the WebStorm, use it to clone a Git repo (or just use the terminal).</p><p><strong>Fetching the components may take some time if your internet connection is slow</strong>.</p><p>When the installation finishes, your project folder should look something like this:</p><h3>Further installation:</h3><ul><li>Install <a href="https://nodejs.org/en/download/" target="_blank">Node.js</a></li><li>Install <a href="http://gulpjs.com/" target="_blank">Gulp</a> and <a href="" target="_blank">Bower</a> globally</li></ul><pre class="indented">
+    <code language="">npm install -g gulp bower</code>
+</pre><ul><li>Install local npm and bower dependencies (run from the project folder)</li></ul><pre class="indented">
+    <code language="">npm install && bower install</code>
+</pre><p>This installs the element sets (Paper, Iron, Platinum) and tools the codelab requires to build and serve apps.</p><aside class="special"><p><strong>What is Node.js?</strong></p><p><a target="_blank" href="https://nodejs.org">Node.js</a>&nbsp; is a JavaScript runtime built on Chrome's V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. Node.js' package ecosystem, npm, is the largest ecosystem of open source libraries in the world.</p></aside><aside class="special"><p><strong>What is Gulp?</strong></p><p><a target="_blank" href="http://gulpjs.com/">Gulp</a>&nbsp; is a task/build runner for development. It allows you to do a lot of stuff within your development workflow. You can compile sass files, uglify and compress js files and much more. The kicker for gulp is that its a streaming build system which doesn't write temp files. It's like Pipes in bash.</p></aside><aside class="special"><p><strong>What is Bower?</strong></p><p><a target="_blank" href="http://bower.io/">Bower</a>&nbsp;is a client-side package management tool that you can use with any web app to take care of the hassles of dependency management. Every Polymer component defines its own set of dependencies. When you install a Polymer component using Bower, the component and its dependencies are installed under <code>bower_components/</code>.</p></aside><h2>Run the demo</h2><p>Next command should open the demo in a new browser tab:</p><pre class="indented">
+    <code language="">gulp serve</code>
+</pre><aside class="special"><p><strong>If you don't see this text appear</strong>, make sure you run <code>gulp serve</code> from the root folder.</p></aside></google-codelab-step><google-codelab-step label="First element" duration="12"><p>Next, you'll create a simple element that displays an icon.</p><p>In this step, you'll learn about:</p><ul><li>Creating a custom element using Polymer.</li><li>Working with local DOM.</li></ul><aside class="special"><p><strong>Learn more:</strong> <strong>local DOM</strong></p><p>Local DOM lets&nbsp;you add a <em>scoped</em>&nbsp;DOM tree inside an element, with local styles and markup that are decoupled from the rest of the web page. The element containing the local DOM tree is called a <em>host element</em>.</p><p>To learn more, see <a target="_blank" href="https://www.polymer-project.org/1.0/docs/devguide/local-dom.html">Local DOM</a>&nbsp;in the Polymer library docs.</p></aside><h2>Create icon-toggle.html</h2><p>Let's create <code>icon-toggle.html</code>&nbsp;in <code>app/elements/</code> folder. This file contains the skeleton of a custom element.</p><p>Unlike most HTML files, this file <em>won't display anything if you load it in a browser</em>—it just <em>defines</em>&nbsp;a new element. The demo you just ran <em>imports</em>&nbsp;<code>icon-toggle.html</code>&nbsp;so it can use the <code>&lt;icon-toggle&gt;</code>&nbsp;element. As you add features to the element in the following steps, they'll show up in the demo.</p><p>Now we need to import Polymer library and another custom element called <code>iron-icon</code> that you'll use later in this step:</p><pre class="indented">
+    <code>&lt;link rel="import"
+      href="../bower_components/polymer/polymer.html"&gt;
+      &lt;link rel="import"
+      href="../bower_components/iron-icon/iron-icon.html"&gt;</code>
+</pre><aside class="special"><p>The <code>link rel="import"</code> element is an HTML import, a new way of including resources in an HTML file.</p></aside><p>Next is the definition of the element itself:</p><pre class="indented">
+    <code>&lt;dom-module id="icon-toggle"&gt;
+      &lt;template&gt;
+      &lt;style&gt;
+      /* Element's styles */
+      :host {}
+      &lt;/style&gt;
+
+      &lt;!-- Element's body --&gt;
+      &lt;/template&gt;
+
+      &lt;script&gt;
+      // Elements scripts
+      &lt;/script&gt;
+      &lt;/dom-module&gt;</code>
+</pre><h3>Key information:</h3><ul><li>The <code>&lt;dom-module&gt;</code>&nbsp;tag is an optional part of the element definition. It defines the element's internal DOM structure, or local DOM &nbsp;as well as the element's local styling. In this case, you're creating an element called <code>icon-toggle</code>.</li><li>&nbsp;The <code>&lt;template&gt;</code>&nbsp;defines the element's local DOM structure. This is where you'll add markup for your custom element.</li><li>The <code>&lt;style&gt;</code>&nbsp;element inside the <code>&lt;template&gt;</code>&nbsp;lets you define styles that are <em>scoped</em>&nbsp;&nbsp;to the local DOM, so they don't affect the rest of the document.</li><li>The <code>:host</code>&nbsp;pseudo-class matches the custom element you're defining (in this case, the <code>&lt;icon-toggle&gt;</code>). This is the element that contains or <em>hosts</em> the local DOM tree.</li></ul><aside class="special"><p>The first <code>&lt;template&gt;</code>&nbsp;tag inside a <code>&lt;dom-module&gt;</code>&nbsp;defines the local DOM for the element. Any sibling <code>&lt;template&gt;</code>&nbsp;tags are ignored by the library.</p></aside><p>At the end of the element definition is some JavaScript that registers the element. If the element has a <code>&lt;dom-module&gt;</code>, this script is usually placed <em>inside</em>&nbsp;the <code>&lt;dom-module&gt;</code>&nbsp;to keep everything together.</p><pre class="indented">
+  <code>&lt;script&gt;
+    // Elements scripts
+    Polymer({
+      /* this is the element's prototype */
+      is: 'icon-toggle'
+    });
+    &lt;/script&gt;</code>
+</pre><h3>Key information:</h3><ul><li>The <code>Polymer</code>&nbsp;call <em>registers</em>&nbsp;the element so it's recognized by the browser. &nbsp;</li><li>The argument to the Polymer call is the new element's prototype. You'll do more with this in a later step.</li><li>The <code>is</code>&nbsp;property on the prototype is the new element's name. It has to <em>match</em>&nbsp;the <code>id</code>&nbsp;on the <code>&lt;dom-module&gt;</code>&nbsp;that contains the element's template.</li></ul></google-codelab-step><google-codelab-step label="Local DOM" duration="8"><p>Now that you're familiar with the basic layout of the element, add something useful to its local DOM template.</p><p>Find the <code>&lt;span&gt;</code>&nbsp;below the &nbsp;<code>local DOM goes here</code>&nbsp;comment:</p><h3>icon-toggle.html—before</h3><pre>
+  <code>
+    &lt;!-- local DOM goes here --&gt;
+    &lt;span>Not much here yet.&lt;/span&gt;
+    &lt;/template&gt;
+  </code>
+</pre><p>&nbsp;Replace the <code>&lt;span&gt;</code>&nbsp;and its contents with the <code>&lt;iron-icon&gt;</code>&nbsp;tag&nbsp;below:</p><h3>icon-toggle.html—after</h3><pre>
+  <code>
+    &lt;!-- local DOM goes here --&gt;
+    &lt;iron-icon icon="polymer"&gt;&lt;/iron-icon&gt;
+    &lt;/template&gt;
+  </code>
+</pre><h3>Key information:</h3><ul><li>The <code>&lt;iron-icon&gt;</code>&nbsp;element is a custom element that renders an icon. Here it's hard-coded to use an icon named "polymer".</li></ul><h2>Style the local DOM</h2><p>There are a number of new CSS selectors to work with local DOM. The <code>icon-toggle.html</code> file already includes a <code>:host</code>&nbsp;selector, discussed earlier, to style the top-level <code>
+    &lt;icon-toggle&gt;</code>&nbsp;element.</p><p>To style the <code>&lt;iron-icon&gt;</code>&nbsp;element, add the following CSS inside the <code>&lt;style&gt;</code>&nbsp;tag after the existing content:</p><h3>icon-toggle.html</h3><pre>
+  <code>
+    &lt;style&gt;
+    /* local styles go here */
+    :host {
+      display: inline-block;
+    }
+    iron-icon {
+      fill: rgba(0,0,0,0);
+      stroke: currentcolor;
+    }
+    :host([pressed]) iron-icon {
+      fill: currentcolor;
+    }
+    &lt;/style&gt;
+  </code>
+</pre><h3>Key information:</h3><ul><li>The <code>&lt;iron-icon&gt;</code>&nbsp;tag uses an SVG icon. The <code>fill</code>&nbsp;and <code>stroke</code>&nbsp;properties are SVG-specific CSS properties. They set the fill color and the outline color for the icon, respectively.</li><li>The <code>:host()</code>&nbsp;function matches the host element <em>if the selector inside the parentheses matches the host element</em>. In this case,<code>[pressed]</code>is a standard CSS attribute selector, so this rule matches when the <code>icon-toggle</code>&nbsp;has a <code>pressed</code>&nbsp;attribute set on it.</li></ul><p>Your custom element definition should now look like this:</p><h3>icon-toggle.html</h3><pre>
+  <code>&lt;link rel="import" href="../polymer/polymer.html"&gt;
+    &lt;link rel="import" href="../iron-icon/iron-icon.html"&gt;
+
+    &lt;dom-module id="icon-toggle"&gt;
+
+      &lt;template&gt;
+
+        &lt;style&gt;
+          /* local styles go here */
+          :host {
+           display: inline-block;
+          }
+          iron-icon {
+            fill: rgba(0,0,0,0);
+            stroke: currentcolor;
+          }
+          :host([pressed]) iron-icon {
+            fill: currentcolor;
+          }
+        &lt;/style&gt;
+
+        &lt;!-- local DOM goes here --&gt;
+        &lt;iron-icon icon="polymer"&gt;&lt;/iron-icon&gt;
+      &lt;/template&gt;
+
+      &lt;script&gt;
+        Polymer({
+          is: 'icon-toggle'
+        });
+      &lt;/script&gt;
+
+    &lt;/dom-module&gt;
+  </code>
+</pre><img src="../images/image-0.png" style="max-width: 150px"><p>You'll notice that one toggle is styled as pressed, because the <code>pressed</code>&nbsp;attribute is set in the demo. But click all you want, the button won't toggle yet; there's no code to change the <code>pressed</code>&nbsp;property.</p><aside class="special"><p><strong>If you don't see the new toggles</strong>, double-check your file against the code above. If you see a blank page, make sure you're clicking on the <code>demo</code>&nbsp;folder or on <code>demo/index.html</code>.</p></aside></google-codelab-step><google-codelab-step label="Use data binding and properties" duration="28"><p>Right now, the element doesn't do much. In this step, you'll give it a basic API, allowing you to configure the icon from markup, using an attribute, or from JavaScript, using a property.</p><p>First, a bit of data binding. Find the <code>&lt;iron-icon&gt;</code>&nbsp;element and change the value of the <code>icon</code>&nbsp;attribute from <code>"polymer"</code>&nbsp;to &nbsp;"<code>&#91;<span>&#91;toggleIcon&#93;</span>&#93;</code>&nbsp;".</p><h3>icon-toggle.html</h3><pre>
+  <code>&lt;!-- local DOM goes here --&gt;
+    &lt;iron-icon icon="&#91;<code>&#91;toggleIcon&#93;</code>&#93;"&gt;&lt;/iron-icon&gt;
+  </code>
+</pre><h3>Key information:</h3><ul><li><code>toggleIcon</code>&nbsp;is a <em>property</em>&nbsp;you'll define on the toggle button element. It doesn't have a default value yet.</li><li>The <code>icon="</code><code>[[toggleIcon]]</code><code>"</code> assignment is a <em>data binding</em>. It links your element's <code>toggleIcon</code>&nbsp;<em>property</em>&nbsp;with the <code>&lt;iron-icon&gt;</code>'s <code>icon</code>&nbsp;property.</li></ul><p>You could now use your element and set the <code>toggleIcon</code>&nbsp;property in markup or using JavaScript, as shown in the following examples. <em>(You don't need to add this code to your project.)</em></p><h3>Example—setting the icon using markup</h3><pre>
+  <code>
+    &lt;icon-toggle toggle-icon="favorite"&gt;&lt;/icon-toggle&gt;
+  </code>
+</pre><h3>Example—setting the icon from JavaScript</h3><pre>
+  <code>
+    var myToggle = document.querySelector('icon-toggle');
+    myToggle.toggleIcon = "favorite";
+  </code>
+</pre><aside class="special"><p><strong>Learn more: attribute and property names</strong><br><br>You'll note that the markup example uses <code>toggle-icon</code>, not <code>toggleIcon.</code>&nbsp;Polymer represents <code>camelCase</code>&nbsp;property names using <code>dash-case</code>&nbsp;attribute names. To learn more, see <a target="_blank" href="https://www.polymer-project.org/1.0/docs/devguide/properties.html#property-name-mapping">Property name to attribute name mapping</a>&nbsp;in the Polymer library docs.</p></aside><p>Next, add a declaration for the <code>toggleIcon</code>&nbsp;property.</p><p>Find the script tag and add the following <code>properties</code>&nbsp;object to the element's prototype:</p><h3>icon-toggle.html</h3><pre>
+  <code>Polymer({
+    /* this is the element's prototype */
+      is: 'icon-toggle',
+      properties: {
+        toggleIcon: String
+      }
+    });
+  </code>
+</pre><h3>Key information:</h3><ul><li>Declaring a property in the <code>properties</code>&nbsp;object is a good idea if the property is going to be part of your element's public API.</li><li>A simple property declaration like this one just includes the type (in this case, <code>String</code>).</li></ul><aside class="special"><p><strong>Learn more: deserializing attributes</strong></p><p>The declared property type affects how Polymer converts, or <em>deserializes</em>&nbsp;the attribute value (always a string value) into a JavaScript property value. The default is <code>String</code>, so the declaration of <code>toggleIcon</code>&nbsp;is a formality here. To learn more, see <a target="_blank" href="https://www.polymer-project.org/1.0/docs/devguide/properties.html#attribute-deserialization">Attribute deserialization</a>&nbsp;in the Polymer docs.</p></aside><p>The <code>properties</code>&nbsp;object also supports several more features. Add the following lines to add support for the <code>pressed</code>&nbsp;property:</p><h3>icon-toggle.html</h3><pre>
+  <code>Polymer({
+    /* this is the element's prototype */
+    is: 'icon-toggle',
+    properties: {
+      toggleIcon: String,
+      pressed: {
+        type: Boolean,
+        value: false,
+        notify: true,
+        reflectToAttribute: true
+      }
+    }
+    });
+  </code>
+</pre><h3>Key information:</h3><ul><li>For this more complicated property, you supply a configuration object with several fields.</li><li>The <code>value</code>&nbsp;specifies the property's <a target="_blank" href="https://www.polymer-project.org/1.0/docs/devguide/properties.html#configure-values">default value</a>.</li><li>The <code>notify</code>&nbsp;property tells Polymer to <em>generate property change events</em> when the property value changes. This lets the change be observed by other nodes.</li><li>The <code>reflectToAttribute</code>&nbsp;property tells Polymer to <a target="_blank" href="https://www.polymer-project.org/1.0/docs/devguide/properties.html#attribute-reflection">update the corresponding attribute when the property changes</a>. This lets you style the element using an attribute selector, like <code>icon-toggle[pressed]</code>.</li></ul><aside class="special"><p><strong>Learn more: notify and reflectToAttribute</strong></p><p><strong><br></strong>The <code>notify</code>&nbsp;and <code>reflectToAttribute</code>&nbsp;properties may sound similar: they both make the element's state visible to the outside world. <code>reflectToAttribute</code>&nbsp;makes the state visible <em>in the DOM tree</em>, so that it's visible to CSS and the <code>querySelector</code>&nbsp;methods. <code>notify</code>&nbsp;<em>makes state changes observable outside the element</em>, either using JavaScript event handlers or Polymer <a target="_blank" href="https://www.polymer-project.org/1.0/docs/devguide/data-binding.html#property-notification">two-way data binding</a>.</p></aside><p>Now your element has <code>pressed</code>&nbsp;and <code>toggleIcon</code>&nbsp;properties working.</p><p>If you're curious about where the stars and hearts come from, you can take a peek at &nbsp;<code>demo/icon-toggle-demo.html</code>&nbsp;and see lines like this:</p><pre>
+  <code>
+    &lt;icon-toggle toggle-icon="star"&gt;&lt;/icon-toggle&gt;
+    &lt;icon-toggle toggle-icon="star" pressed&gt;&lt;/icon-toggle&gt;
+  </code>
+</pre></google-codelab-step><google-codelab-step label="React to input" duration="10"><p>Of course, a button isn't a button if you can't click it. To toggle the button, add an event listener. To add event listeners on the host element (in this case, <code>icon-toggle</code>), add a <code>listeners</code>&nbsp;object to the element prototype:</p><h3>icon-toggle.html</h3><pre>
+  <code>Polymer({
+    /* this is the element's prototype */
+    is: 'icon-toggle',
+    properties: {
+      toggleIcon: String,
+      pressed: {
+        type: Boolean,
+        value: false,
+        notify: true,
+        reflectToAttribute: true
+      }
+    },
+    listeners: {
+      'tap': 'toggle'
+    },
+    toggle: function() {
+      this.pressed = !this.pressed;
+    },
+    });</code>
+</pre><h3>Key information:</h3><ul><li>The <code><a target="_blank" href="https://www.polymer-project.org/1.0/docs/devguide/events.html#event-listeners">listeners</a></code><a target="_blank" href="https://www.polymer-project.org/1.0/docs/devguide/events.html#event-listeners">&nbsp;object</a>maps event names to handler names.</li><li>The <code>tap</code>&nbsp;event is generated by Polymer's <a target="_blank" href="https://www.polymer-project.org/1.0/docs/devguide/events.html#gestures">gesture system</a>&nbsp;when the user clicks or taps on a target with a mouse or finger.</li></ul><p>Save the <code>icon-toggle.html</code> file and run the demo again. You should be able to press the button and see it toggle between its pressed and unpressed states.&nbsp;</p><h1>IMAGE HERE</h1><aside class="special"><p><strong>Learn more: data binding</strong></p><p>To see how the demo works, open <code>demo/icon-toggle-demo.html</code> and take a look around. Yes, the demo for this element is also an element. The element uses <a target="_blank" href="https://www.polymer-project.org/1.0/docs/devguide/data-binding.html#property-notification">two-way data binding</a>&nbsp;and a <a target="_blank" href="https://www.polymer-project.org/1.0/docs/devguide/data-binding.html#annotated-computed">computed binding</a>&nbsp;to change the string displayed when you toggle the button.</p></aside></google-codelab-step><google-codelab-step label="Theming: custom CSS properties" duration="8"><p>You now have a button that's basically functional. But it's stuck using the existing text color for both pressed and unpressed states. What if you want to get a little flashier?</p><p>Local DOM helps prevent users from styling your element's internals by accident. Using custom properties, your element can expose a specific set of user-styleable properties.</p><p>You apply a custom property inside your element using the `var` function.</p><pre>
+  <code>background-color: var(--my-custom-property, defaultValue);</code>
+</pre><p>Where --<em>my-custom-property</em>&nbsp;is a custom property name, always starting with two dashes (<code>--</code>), and <em>defaultValue</em>&nbsp;is an (optional) CSS value that's used if the custom property isn't set.</p><p>Edit your element's <code>&lt;style&gt;</code>&nbsp;tag and replace the existing <code>fill</code>&nbsp;and <code>stroke</code>&nbsp;values with custom properties:</p><h3>icon-toggle.html</h3><pre>
+  <code>&lt;style&gt;
+    /* local styles go here */
+    :host {
+      display: inline-block;
+    }
+    iron-icon {
+      fill: var(--icon-toggle-color, rgba(0,0,0,0));
+      stroke: var(--icon-toggle-outline-color, currentcolor);
+    }
+    :host([pressed]) iron-icon {
+      fill: var(--icon-toggle-pressed-color, currentcolor);
+    }
+    &lt;/style&gt;
+  </code>
+</pre><p>Because of the default values, you can still style the <code>&lt;icon-toggle&gt;</code>&nbsp;just by setting <code>color</code>, but now you have other options.&nbsp;Open up <code>demo/icon-toggle-demo.html</code> and set the new properties:</p><h3>icon-toggle-demo.html</h3><pre>
+  <code>&lt;style&gt;
+    :host {
+      font-family: sans-serif;
+      --icon-toggle-color: lightgrey;
+      --icon-toggle-outline-color: black;
+      --icon-toggle-pressed-color: red;
+    };
+    &lt;/style&gt;
+  </code>
+</pre><p>Run the demo again to get colorful.</p><h1>IMAGE HERE</h1></google-codelab-step></google-codelab><paper-toast id="toast"><span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Ok</span></paper-toast></template><script src="scripts/app.js"></script></body></html>
