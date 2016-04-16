@@ -6,7 +6,8 @@
   "license": "MIT",
   "devDependencies": {
     "browser-sync": "^2.12.*",
-    "gulp": "^3.9.1"
+    "connect-history-api-fallback": "^1.2.*",
+    "gulp": "^3.9.*"
   },
   "engines": {
     "node": ">=0.10.0"
