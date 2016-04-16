@@ -30,3 +30,5 @@ gulp.task('serve', function() {
 
   gulp.watch(['app/**/*'], reload);
 });
+
+gulp.task('watch', ['serve']);
